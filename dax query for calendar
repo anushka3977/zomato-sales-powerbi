@@ -1,0 +1,15 @@
+// DAX query for calendar
+DateCalendar = 
+ADDCOLUMNS (
+    CALENDAR ( 
+        MIN ( orders[order_date] ), 
+        MAX ( orders[order_date] ) 
+    ),
+    "Year", YEAR ( [Date] ),
+    "Month Number", MONTH ( [Date] ),
+    "Month Name", FORMAT ( [Date], "MMMM" ),
+    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+    "Weekday", FORMAT ( [Date], "dddd" ),
+    "Weekday Number", WEEKDAY ( [Date], 2 ),  -- Monday = 1
+    "Year-Month", FORMAT ( [Date], "YYYY-MM" )
+)
